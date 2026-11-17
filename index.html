@@ -13,8 +13,10 @@
     <link rel="stylesheet" href="css/header-search.css" />
     <link rel="stylesheet" href="css/course-list.css" />
     <link rel="stylesheet" href="css/cart-table.css" />
+    <link rel="stylesheet" href="css/payment.css" />
     <script src="js/search.js" defer></script>
     <script src="js/cart.js" defer></script>
+    <script src="js/payment.js" defer></script>
   </head>
   <body>
     <header class="site-header">
@@ -23,22 +25,33 @@
           <span class="brand-mark" aria-hidden="true">SE</span>
           <span>Smart<span class="brand-highlight">Enrollment</span></span>
         </a>
-        <p class="header-caption">Cổng đăng ký môn học thông minh</p>
+        <nav class="header-nav" aria-label="Điều hướng chính">
+          <a href="#courses">Danh sách môn</a>
+          <a href="#registration">Giỏ đăng ký</a>
+        </nav>
       </div>
     </header>
 
     <main class="page-container">
       <section class="welcome" aria-labelledby="page-title">
-        <p class="eyebrow">KẾ HOẠCH HỌC TẬP CỦA BẠN</p>
-        <h1 id="page-title">Chọn môn học, <span>mở lối tương lai.</span></h1>
-        <p class="welcome-copy">
-          Tìm môn học phù hợp và xây dựng học kỳ cân bằng. Tổng đăng ký tối đa là 25 tín chỉ.
-        </p>
+        <div class="welcome-content">
+          <p class="eyebrow">KẾ HOẠCH HỌC TẬP CỦA BẠN</p>
+          <h1 id="page-title">Chọn môn học,<br /><span>mở lối tương lai.</span></h1>
+          <p class="welcome-copy">
+            Tìm môn phù hợp, cân đối tín chỉ và hoàn tất đăng ký ngay trong một nơi.
+          </p>
+          <a class="welcome-link" href="#courses">Khám phá danh sách <span aria-hidden="true">↓</span></a>
+        </div>
+        <div class="welcome-stat" aria-label="Giới hạn tối đa 25 tín chỉ mỗi học kỳ">
+          <span class="welcome-stat-icon" aria-hidden="true">✳</span>
+          <strong>25</strong>
+          <span>tín chỉ tối đa<br />mỗi học kỳ</span>
+        </div>
       </section>
 
       <div class="page-layout">
         <!-- Phần Header & Form tìm kiếm — nghia -->
-        <section class="course-browser panel" aria-labelledby="search-title">
+        <section id="courses" class="course-browser panel" aria-labelledby="search-title">
           <div class="section-heading">
             <div>
               <p class="eyebrow">KHÁM PHÁ</p>
@@ -61,21 +74,180 @@
             </div>
           </form>
 
-          <!-- Thẻ môn học dùng data-credits; nội dung do thành viên phụ trách danh sách bổ sung. -->
-          <div id="course-list" class="course-list" aria-live="polite"></div>
+          <div class="list-toolbar" aria-live="polite">
+            <span>Kết quả môn học</span>
+            <strong id="course-count">9 môn học</strong>
+          </div>
+
+          <!-- Môn học dùng data-* làm nguồn dữ liệu cho tìm kiếm và giỏ hàng. -->
+          <div id="course-list" class="course-list">
+            <article
+              class="course-card"
+              data-course-id="WEB101"
+              data-course-code="WEB101"
+              data-course-name="Lập trình Web"
+              data-credits="3"
+            >
+              <div class="course-card-details">
+                <p class="course-code">WEB101</p>
+                <h3 data-course-title>Lập trình Web</h3>
+                <p>Nền tảng HTML, CSS và JavaScript để xây dựng ứng dụng web.</p>
+              </div>
+              <div class="course-card-footer">
+                <span class="course-credits">3 tín chỉ</span>
+                <button type="button" class="course-add-button" data-cart-action="add">Thêm môn</button>
+              </div>
+            </article>
+            <article
+              class="course-card"
+              data-course-id="PRF192"
+              data-course-code="PRF192"
+              data-course-name="Lập trình cơ bản"
+              data-credits="3"
+            >
+              <div class="course-card-details">
+                <p class="course-code">PRF192</p>
+                <h3 data-course-title>Lập trình cơ bản</h3>
+                <p>Làm quen với tư duy thuật toán và kỹ năng lập trình.</p>
+              </div>
+              <div class="course-card-footer">
+                <span class="course-credits">3 tín chỉ</span>
+                <button type="button" class="course-add-button" data-cart-action="add">Thêm môn</button>
+              </div>
+            </article>
+            <article
+              class="course-card"
+              data-course-id="DBI202"
+              data-course-code="DBI202"
+              data-course-name="Cơ sở dữ liệu"
+              data-credits="3"
+            >
+              <div class="course-card-details">
+                <p class="course-code">DBI202</p>
+                <h3 data-course-title>Cơ sở dữ liệu</h3>
+                <p>Thiết kế, truy vấn và quản lý dữ liệu quan hệ.</p>
+              </div>
+              <div class="course-card-footer">
+                <span class="course-credits">3 tín chỉ</span>
+                <button type="button" class="course-add-button" data-cart-action="add">Thêm môn</button>
+              </div>
+            </article>
+            <article
+              class="course-card"
+              data-course-id="MAD101"
+              data-course-code="MAD101"
+              data-course-name="Toán rời rạc"
+              data-credits="3"
+            >
+              <div class="course-card-details">
+                <p class="course-code">MAD101</p>
+                <h3 data-course-title>Toán rời rạc</h3>
+                <p>Các cấu trúc toán học nền tảng trong ngành máy tính.</p>
+              </div>
+              <div class="course-card-footer">
+                <span class="course-credits">3 tín chỉ</span>
+                <button type="button" class="course-add-button" data-cart-action="add">Thêm môn</button>
+              </div>
+            </article>
+            <article
+              class="course-card"
+              data-course-id="SWE201"
+              data-course-code="SWE201"
+              data-course-name="Nhập môn Kỹ thuật phần mềm"
+              data-credits="3"
+            >
+              <div class="course-card-details">
+                <p class="course-code">SWE201</p>
+                <h3 data-course-title>Nhập môn Kỹ thuật phần mềm</h3>
+                <p>Tìm hiểu quy trình phân tích và phát triển phần mềm.</p>
+              </div>
+              <div class="course-card-footer">
+                <span class="course-credits">3 tín chỉ</span>
+                <button type="button" class="course-add-button" data-cart-action="add">Thêm môn</button>
+              </div>
+            </article>
+            <article
+              class="course-card"
+              data-course-id="SOC202"
+              data-course-code="SOC202"
+              data-course-name="Chủ nghĩa xã hội khoa học"
+              data-credits="2"
+            >
+              <div class="course-card-details">
+                <p class="course-code">SOC202</p>
+                <h3 data-course-title>Chủ nghĩa xã hội khoa học</h3>
+                <p>Những nguyên lý cơ bản và sự vận dụng trong đời sống xã hội.</p>
+              </div>
+              <div class="course-card-footer">
+                <span class="course-credits">2 tín chỉ</span>
+                <button type="button" class="course-add-button" data-cart-action="add">Thêm môn</button>
+              </div>
+            </article>
+            <article
+              class="course-card"
+              data-course-id="PHI101"
+              data-course-code="PHI101"
+              data-course-name="Triết học Mác-Lênin"
+              data-credits="3"
+            >
+              <div class="course-card-details">
+                <p class="course-code">PHI101</p>
+                <h3 data-course-title>Triết học Mác-Lênin</h3>
+                <p>Các khái niệm nền tảng về thế giới quan và phương pháp luận.</p>
+              </div>
+              <div class="course-card-footer">
+                <span class="course-credits">3 tín chỉ</span>
+                <button type="button" class="course-add-button" data-cart-action="add">Thêm môn</button>
+              </div>
+            </article>
+            <article
+              class="course-card"
+              data-course-id="ENG101"
+              data-course-code="ENG101"
+              data-course-name="Ngoại ngữ"
+              data-credits="3"
+            >
+              <div class="course-card-details">
+                <p class="course-code">ENG101</p>
+                <h3 data-course-title>Ngoại ngữ</h3>
+                <p>Rèn luyện kỹ năng nghe, nói, đọc và viết trong môi trường học tập.</p>
+              </div>
+              <div class="course-card-footer">
+                <span class="course-credits">3 tín chỉ</span>
+                <button type="button" class="course-add-button" data-cart-action="add">Thêm môn</button>
+              </div>
+            </article>
+            <article
+              class="course-card"
+              data-course-id="DSE201"
+              data-course-code="DSE201"
+              data-course-name="Tín hiệu số cơ bản"
+              data-credits="3"
+            >
+              <div class="course-card-details">
+                <p class="course-code">DSE201</p>
+                <h3 data-course-title>Tín hiệu số cơ bản</h3>
+                <p>Biểu diễn, xử lý và phân tích tín hiệu trong miền số.</p>
+              </div>
+              <div class="course-card-footer">
+                <span class="course-credits">3 tín chỉ</span>
+                <button type="button" class="course-add-button" data-cart-action="add">Thêm môn</button>
+              </div>
+            </article>
+          </div>
           <p id="course-empty-state" class="empty-state" hidden>
             Không tìm thấy môn học phù hợp.
           </p>
         </section>
 
         <!-- Bảng môn học đã chọn — truong; logic giỏ hàng — leader. -->
-        <section class="enrollment-cart panel" aria-labelledby="cart-title">
+        <section id="registration" class="enrollment-cart panel" aria-labelledby="cart-title">
           <div class="section-heading">
             <div>
               <p class="eyebrow">HỌC KỲ CỦA BẠN</p>
               <h2 id="cart-title">Môn đã chọn</h2>
             </div>
-            <span class="cart-limit">Tối đa 25 TC</span>
+            <span id="cart-count" class="cart-limit">0 môn · tối đa 25 TC</span>
           </div>
 
           <div class="cart-table-wrapper">
@@ -96,14 +268,66 @@
             <span>Tổng số tín chỉ</span>
             <strong><span id="total-credits" aria-live="polite">0</span><span class="credit-limit"> / 25 TC</span></strong>
           </div>
+          <div class="credit-progress-wrap">
+            <progress id="credit-progress" max="25" value="0" aria-label="Tiến độ tín chỉ"></progress>
+            <span id="credit-progress-label">Còn 25 tín chỉ</span>
+          </div>
           <p id="cart-message" class="cart-message" role="status" aria-live="polite"></p>
+
+          <section class="payment-panel" aria-labelledby="payment-title">
+            <div class="payment-heading">
+              <div>
+                <p class="eyebrow">BƯỚC CUỐI</p>
+                <h3 id="payment-title">Thanh toán trực tuyến</h3>
+              </div>
+              <span class="demo-badge">DEMO</span>
+            </div>
+            <p class="payment-intro">Xem trước QR và số tiền theo các môn đã chọn.</p>
+            <div class="payment-total">
+              <div><span>Tổng thanh toán</span><small id="payment-rate-note">Mức phí minh họa: 500.000 ₫ / tín chỉ</small></div>
+              <strong id="payment-amount">0 ₫</strong>
+            </div>
+            <button id="payment-submit" class="payment-button" type="button" disabled>
+              Hiển thị mã QR <span aria-hidden="true">→</span>
+            </button>
+            <p id="payment-status" class="payment-status" role="status" aria-live="polite">
+              Chọn môn học để tạo mã QR demo.
+            </p>
+            <p class="payment-disclaimer">
+              <span aria-hidden="true">ⓘ</span> Học phí đang dùng mức minh họa; hãy đối chiếu số tiền và người nhận trước khi chuyển.
+            </p>
+          </section>
         </section>
       </div>
     </main>
 
+    <dialog id="qr-dialog" class="qr-dialog" aria-labelledby="qr-title">
+      <div class="qr-dialog-content">
+        <div class="qr-dialog-header">
+          <div>
+            <p class="eyebrow">SMART ENROLLMENT</p>
+            <h2 id="qr-title">QR và số tiền thanh toán</h2>
+          </div>
+          <button id="qr-close" class="qr-close" type="button" aria-label="Đóng mã QR" autofocus>
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <p id="qr-instructions" class="qr-instructions">Ảnh QR thanh toán được tải từ thư mục assets.</p>
+        <div id="qr-code-frame" class="qr-code-frame" aria-label="Mã QR minh họa"></div>
+        <div class="qr-amount-box">
+          <span>Số tiền cần chuyển <span class="demo-badge">DEMO</span></span>
+          <strong id="qr-payment-amount">0 ₫</strong>
+        </div>
+        <p id="qr-payment-note" class="qr-payment-note">
+          Mã này chỉ dùng xem trước giao diện, không thể dùng để chuyển tiền.
+        </p>
+        <button id="qr-done" class="qr-done-button" type="button">Đóng</button>
+      </div>
+    </dialog>
+
     <footer class="page-container site-footer">
       <span>Smart Enrollment</span>
-      <span>Thiết kế học kỳ theo cách của bạn.</span>
+      <span>Luồng thanh toán hiện chạy ở chế độ demo.</span>
     </footer>
   </body>
 </html>
