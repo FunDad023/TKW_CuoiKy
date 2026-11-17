@@ -1,2 +1,113 @@
-/* truong — CSS cho thẻ môn học và hiệu ứng hover. */
+﻿/* Truong: thẻ môn học và hiệu ứng hover. */
+.course-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 230px), 1fr));
+  align-items: stretch;
+  gap: 14px;
+  margin-top: 22px;
+}
 
+.course-card {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 18px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  transition: transform 160ms ease, border-color 160ms ease, box-shadow 160ms ease;
+}
+
+.course-card:hover,
+.course-card:focus-within {
+  transform: translateY(-3px);
+  border-color: var(--green-700);
+  box-shadow: 0 12px 26px rgb(31 67 43 / 10%);
+}
+
+.course-card h3 {
+  margin: 0;
+  color: var(--green-950);
+  font-size: 1.03rem;
+  letter-spacing: -0.025em;
+  line-height: 1.35;
+}
+
+.course-card p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.course-card-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 7px;
+}
+
+.course-code,
+.course-credits {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 9px;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 800;
+  line-height: 1.3;
+}
+
+.course-code {
+  color: var(--green-800);
+  background: var(--green-100);
+}
+
+.course-credits {
+  color: var(--green-900);
+  background: var(--banana-300);
+}
+
+.course-card button {
+  width: 100%;
+  min-height: 42px;
+  margin-top: auto;
+  padding: 9px 13px;
+  color: var(--green-950);
+  background: var(--banana-500);
+  border: 0;
+  border-radius: var(--radius-control);
+  font-size: 0.84rem;
+  font-weight: 800;
+  transition: background-color 160ms ease, transform 160ms ease;
+}
+
+.course-card button:hover:not(:disabled) {
+  background: var(--banana-300);
+  transform: translateY(-1px);
+}
+
+.course-card button:focus-visible {
+  outline: 3px solid var(--green-700);
+  outline-offset: 3px;
+}
+
+.course-card button:disabled {
+  color: var(--muted);
+  background: var(--green-100);
+  cursor: not-allowed;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .course-card,
+  .course-card button {
+    transition: none;
+  }
+
+  .course-card:hover,
+  .course-card:focus-within,
+  .course-card button:hover:not(:disabled) {
+    transform: none;
+  }
+}
