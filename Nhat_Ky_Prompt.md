@@ -35,6 +35,5 @@ danh sách môn học đã chọn chuyên nghiệp và Responsive.\
 ● JavaScript: Xử lý logic "Giỏ hàng môn học": Thêm/Xóa môn học\
 khỏi danh sách chọn, tính tổng số tín chỉ theo thời gian thực và\
 ngăn chặn nếu tổng tín chỉ vượt quá 25."&#x20;
-
 với đề tài trên hãy làm yêu cầu sau:
 dựa vàoảnh tui gửi. tôi là thành viên Truong hãy code file được phân công trên ảnh, không liên quan vào cái file khác ko được chỉ định. Đồng thời dựa vào file readme làm cho UI có màu sắc và bố cục phải thống nhất với dự án
