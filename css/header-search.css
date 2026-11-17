@@ -4,6 +4,34 @@
   isolation: isolate;
 }
 
+.header-nav {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.header-nav a {
+  padding: 8px 12px;
+  color: rgb(255 254 244 / 82%);
+  border: 1px solid transparent;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: color 160ms ease, background-color 160ms ease, border-color 160ms ease;
+}
+
+.header-nav a:hover {
+  color: #fffef4;
+  background: rgb(255 255 255 / 8%);
+  border-color: rgb(255 255 255 / 14%);
+}
+
+.header-nav a:focus-visible {
+  outline: 3px solid var(--banana-300);
+  outline-offset: 2px;
+}
+
 .site-header .header-inner {
   position: relative;
   z-index: 1;
@@ -70,6 +98,21 @@
   .search-controls input,
   .search-controls button {
     width: 100%;
+  }
+
+  .header-nav {
+    gap: 2px;
+  }
+
+  .header-nav a {
+    padding: 7px 8px;
+    font-size: 0.68rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .header-nav {
+    display: none;
   }
 }
 

@@ -10,6 +10,9 @@
   const tableWrapper = document.querySelector(".cart-table-wrapper");
   const message = document.querySelector("#cart-message");
   const courseList = document.querySelector("#course-list");
+  const cartCount = document.querySelector("#cart-count");
+  const creditProgress = document.querySelector("#credit-progress");
+  const creditProgressLabel = document.querySelector("#credit-progress-label");
 
   if (!cartItems || !totalCreditsElement || !emptyState || !message) return;
 
@@ -72,10 +75,25 @@
     }
 
     totalCreditsElement.textContent = String(total);
+    if (cartCount) {
+      cartCount.textContent = `${courses.size} môn · tối đa ${CREDIT_LIMIT} TC`;
+    }
+    if (creditProgress) creditProgress.value = total;
+    if (creditProgressLabel) {
+      creditProgressLabel.textContent =
+        total === CREDIT_LIMIT
+          ? `Đã đạt giới hạn ${CREDIT_LIMIT} tín chỉ`
+          : `Còn ${CREDIT_LIMIT - total} tín chỉ`;
+    }
     emptyState.hidden = courses.size > 0;
     if (tableWrapper) tableWrapper.hidden = courses.size === 0;
     totalCreditsElement.closest("strong")?.classList.toggle("is-at-limit", total >= CREDIT_LIMIT);
     syncAddButtons();
+    document.dispatchEvent(
+      new CustomEvent("enrollment:cartchange", {
+        detail: { totalCredits: total, courseCount: courses.size },
+      }),
+    );
   }
 
   function addCourse(card) {
